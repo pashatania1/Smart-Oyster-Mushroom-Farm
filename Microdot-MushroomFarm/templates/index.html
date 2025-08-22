@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Oyster Mushroom Farming Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-green-700 text-white px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <span class="text-2xl">🍄</span>
+      <h1 class="text-lg font-bold">Smart Oyster Mushroom Farming Dashboard</h1>
+    </div>
+    <div id="user-info" class="flex items-center space-x-3"></div>
+  </nav>
+
+  <!-- Container -->
+  <main class="p-6">
+    <!-- Mode -->
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-semibold">
+        Mode: <span id="mode" class="text-green-700">--</span>
+      </h2>
+      <button id="switchModeBtn" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+        Switch Mode
+      </button>
+    </div>
+
+    <!-- Status Jamur -->
+    <div class="bg-white shadow rounded-xl p-4 text-center mb-6">
+      <p class="text-gray-500">🍄 Status Jamur</p>
+      <p id="jamur_status" class="font-bold text-lg">--</p>
+    </div>
+
+    <!-- Sensor Data Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white shadow rounded-xl p-4">
+        <p class="text-gray-500">🌡 Suhu</p>
+        <p id="temp" class="text-2xl font-bold text-green-700">-- °C</p>
+      </div>
+      <div class="bg-white shadow rounded-xl p-4">
+        <p class="text-gray-500">💧 Kelembapan</p>
+        <p id="humi" class="text-2xl font-bold text-blue-600">-- %</p>
+      </div>
+
+      <div class="bg-white shadow rounded-xl p-4">
+        <p class="text-gray-500">🔥 Kualitas Udara</p>
+        <p id="gas" class="text-2xl font-bold text-red-600">--</p>
+        <span class="text-xs text-gray-500">Nilai ADC</span>
+      </div>
+      <div class="bg-white shadow rounded-xl p-4">
+        <p class="text-gray-500">💦 Level Air Tangki</p>
+        <p id="water" class="text-2xl font-bold text-blue-500">-- cm</p>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white shadow rounded-xl p-4 text-center">
+        <p>💧 Sprinkle</p>
+        <p id="mister" class="font-bold">--</p>
+      </div>
+      <div class="bg-white shadow rounded-xl p-4 text-center">
+        <p>💡 Heater</p>
+        <p id="lamp" class="font-bold">--</p>
+      </div>
+      <div class="bg-white shadow rounded-xl p-4 text-center">
+        <p>🌀 Fan</p>
+        <p id="fan" class="font-bold">--</p>
+      </div>
+      <div class="bg-white shadow rounded-xl p-4 text-center">
+        <p>🔔 Pompa Air</p>
+        <p id="buzzer" class="font-bold">--</p>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white shadow rounded-xl p-4">
+        <h3 class="text-lg font-semibold mb-2">🌡 Riwayat Suhu</h3>
+        <canvas id="tempChart" class="w-full h-40"></canvas>
+      </div>
+      <div class="bg-white shadow rounded-xl p-4">
+        <h3 class="text-lg font-semibold mb-2">💧 Riwayat Kelembapan</h3>
+        <canvas id="humiChart" class="w-full h-40"></canvas>
+      </div>
+    </div>
+  </main>
+
+    
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Fetch API Data -->
+  <script src="/static/script.js"></script>
+  
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-200 text-center p-3">
+    Aditya - Arip - Pasha © 2025
+  </footer>
+</body>
+</html>
