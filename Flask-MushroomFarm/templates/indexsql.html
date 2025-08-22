@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Flask SQLite Home{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold text-blue-900 mb-6 text-center">
+    Selamat Datang di Web Flask-SQLite
+  </h1>
+
+   <!-- Menu navigasi -->
+  <div class="flex flex-col items-center space-y-4">
+    <a href="/enternew"
+       class="w-full max-w-sm bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-6 rounded-xl shadow-md transition">
+       ➕ Tambah Data User
+    </a>
+
+    <a href="/list"
+       class="w-full max-w-sm bg-green-500 hover:bg-green-600 text-white text-center py-3 px-6 rounded-xl shadow-md transition">
+       📋 Lihat Record User
+    </a>
+
+    <a href="/sensors"
+       class="w-full max-w-sm bg-indigo-500 hover:bg-indigo-600 text-white text-center py-3 px-6 rounded-xl shadow-md transition">
+       📋 Lihat Record Sensor
+    </a>
+  </div>
+{% endblock %}

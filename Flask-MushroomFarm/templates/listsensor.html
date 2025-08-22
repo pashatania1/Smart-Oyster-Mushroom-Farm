@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Daftar Data Sensor{% endblock %}
+
+{% block content %}
+<div class="p-6 bg-white shadow-md rounded-lg max-w-7xl mx-auto">
+  <h3 class="text-2xl font-bold text-green-800 mb-6 text-center">
+    🌱 Sensor Data Log
+  </h3>
+
+  <div class="overflow-x-auto">
+    <table class="w-full table-auto border border-gray-300 rounded-lg">
+      <thead class="bg-green-600 text-white">
+        <tr>
+          <th class="py-3 px-4 text-left">ID</th>
+          <th class="py-3 px-4 text-left">Temperature (°C)</th>
+          <th class="py-3 px-4 text-left">Humidity (%)</th>
+          <th class="py-3 px-4 text-left">Light</th>
+          <th class="py-3 px-4 text-left">Gas</th>
+          <th class="py-3 px-4 text-left">Water</th>
+          <th class="py-3 px-4 text-left">Mode</th>
+          <th class="py-3 px-4 text-left">Status</th>
+          <th class="py-3 px-4 text-left">Timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+        <tr class="border-b odd:bg-white even:bg-gray-50 hover:bg-gray-100 transition">
+          <td class="py-2 px-4 font-medium text-gray-800">{{ row["id"] }}</td>
+          <td class="py-2 px-4">{{ row["temperature"] }}</td>
+          <td class="py-2 px-4">{{ row["humidity"] }}</td>
+          <td class="py-2 px-4">{{ row["light"] }}</td>
+          <td class="py-2 px-4">{{ row["gas"] }}</td>
+          <td class="py-2 px-4">{{ row["water"] }}</td>
+          <td class="py-2 px-4">
+            <span class="px-2 py-1 rounded-lg text-white
+              {% if row['mode'] == 'incubation' %} bg-blue-500
+              {% elif row['mode'] == 'fruiting' %} bg-purple-500
+              {% else %} bg-gray-400 {% endif %}">
+              {{ row["mode"] }}
+            </span>
+          </td>
+          <td class="py-2 px-4">
+            <span class="px-2 py-1 rounded-lg text-white
+              {% if row['status'] == 'Happy' %} bg-green-500
+              {% else %} bg-red-500 {% endif %}">
+              {{ row["status"] }}
+            </span>
+          </td>
+          <td class="py-2 px-4 text-gray-600">{{ row["timestamp"] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-center mt-6">
+    <a href="/"
+       class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg shadow-md transition">
+       ← Go Back to Home
+    </a>
+  </div>
+</div>
+{% endblock %}

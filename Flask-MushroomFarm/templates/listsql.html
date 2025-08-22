@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Daftar Student{% endblock %}
+
+{% block content %}
+<div class="p-6 bg-white shadow-md rounded-lg max-w-6xl mx-auto">
+  <h3 class="text-2xl font-bold text-blue-800 mb-6 text-center">
+    📋 Student Information
+  </h3>
+
+  <div class="overflow-x-auto">
+    <table class="w-full table-auto border border-gray-300 rounded-lg">
+      <thead class="bg-blue-600 text-white">
+        <tr>
+          <th class="py-3 px-6 text-left">Name</th>
+          <th class="py-3 px-6 text-left min-w-[250px]">Address</th>
+          <th class="py-3 px-6 text-left">City</th>
+            <th class="py-3 px-6 text-left">Username</th>
+          <th class="py-3 px-6 text-left">Pin</th>
+          <th class="py-3 px-6 text-center">Photo</th>
+          <th class="py-3 px-6 text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+        <tr class="border-b odd:bg-white even:bg-gray-50 hover:bg-gray-100 transition">
+          <td class="py-2 px-6 font-medium text-gray-800">{{ row["name"] }}</td>
+          <td class="py-2 px-6 min-w-[250px] whitespace-normal break-words text-gray-600">
+            {{ row["address"] }}
+          </td>
+          <td class="py-2 px-6">{{ row["city"] }}</td>
+            <td class="py-2 px-6">{{ row["username"] }}</td>
+          <td class="py-2 px-6">{{ row["pin"] }}</td>
+          <td class="py-2 px-6 text-center">
+            {% if row.photo %}
+              <img src="{{ url_for('static', filename='uploads/' ~ row.photo) }}"
+                   class="h-20 w-20 object-cover rounded-full border shadow-sm mx-auto">
+            {% else %}
+              <span class="text-gray-400 italic">No Photo</span>
+            {% endif %}
+          </td>
+          <td class="py-2 px-6 text-center">
+            <div class="flex justify-center gap-2">
+              <!-- Tombol Edit -->
+              <a href="/edit/{{ row['id'] }}"
+                 class="bg-yellow-500 hover:bg-yellow-600 text-white py-1.5 px-3 rounded-lg shadow-md transition">
+                 ✏️ Edit
+              </a>
+              <!-- Tombol Hapus -->
+              <a href="/delete/{{ row['id'] }}"
+                 class="bg-red-500 hover:bg-red-600 text-white py-1.5 px-3 rounded-lg shadow-md transition"
+                 onclick="return confirm('Yakin mau hapus data ini?')">
+                 🗑️ Delete
+              </a>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-center mt-6">
+    <a href="/"
+       class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md transition">
+       ← Go Back to Home
+    </a>
+  </div>
+</div>
+{% endblock %}

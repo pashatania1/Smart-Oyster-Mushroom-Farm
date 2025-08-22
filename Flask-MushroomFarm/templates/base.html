@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="My Flask App with Tailwind Navy Gradient Theme">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-50 text-gray-800">
+
+<!-- Navbar -->
+<nav class="bg-gradient-to-r from-blue-900 to-blue-700 text-white shadow-md">
+  <div class="container mx-auto flex items-center justify-between p-4">
+    <a href="/" class="text-xl font-bold tracking-wide">Smart Oyster Mushroom Farming App</a>
+
+    <button class="md:hidden p-2 focus:outline-none" id="menu-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <ul class="hidden md:flex space-x-6 font-medium items-center" id="menu">
+      <li><a href="/" class="hover:text-yellow-300 {% if request.path == '/' %}text-yellow-400 font-semibold{% endif %}">Home</a></li>
+      <li><a href="/about" class="hover:text-yellow-300 {% if request.path == '/about' %}text-yellow-400 font-semibold{% endif %}">About</a></li>
+      <li><a href="/response" class="hover:text-yellow-300 {% if request.path == '/response' %}text-yellow-400 font-semibold{% endif %}">Response</a></li>
+
+      {% if user %}
+        <li class="flex items-center space-x-2">
+          <!-- Foto profil -->
+          {% if user.photo %}
+            <img src="{{ url_for('static', filename='uploads/' ~ user.photo) }}" alt="Foto" class="w-8 h-8 rounded-full border-2 border-white">
+          {% else %}
+            <img src="{{ url_for('static', filename='default-avatar.png') }}" alt="Foto" class="w-8 h-8 rounded-full border-2 border-white">
+          {% endif %}
+          <span class="text-yellow-300 font-semibold">Hi, {{ user.name }}</span>
+        </li>
+        <li>
+          <a href="{{ url_for('logout') }}" onclick="return confirmLogout()"
+             class="flex items-center justify-center bg-red-500 hover:bg-red-600 p-2 rounded-full shadow-md transition"
+             title="Logout">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                 stroke="currentColor" class="w-5 h-5 text-white">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4m0 4h.01M16.24 7.76a6 6 0 11-8.48 0" />
+            </svg>
+          </a>
+        </li>
+      {% else %}
+        <li>
+          <a href="{{ url_for('login') }}" class="bg-green-500 hover:bg-green-600 text-white py-1 px-3 rounded-lg shadow-md">Login</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+  <!-- Content -->
+  <main class="flex-grow container mx-auto px-4 py-8">
+    <div class="w-full bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-blue-800 to-blue-600 text-white text-center py-4 mt-auto">
+    &copy; 2025 My Flask App | Pashatania
+  </footer>
+
+  <!-- Script for mobile menu -->
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const menu = document.getElementById("menu");
+    menuBtn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+
+  function confirmLogout() {
+    return confirm("⚠️ Apakah Anda yakin ingin logout?");
+  }
+
+  </script>
+</body>
+</html>

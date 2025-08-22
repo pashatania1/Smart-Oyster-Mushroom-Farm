@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Tambah Data Siswa{% endblock %}
+
+{% block content %}
+  <h2 class="text-2xl font-bold text-blue-900 mb-6 text-center">
+    ➕ Add Student
+  </h2>
+
+  <form action="/addrec" method="post" enctype="multipart/form-data"
+        class="space-y-4 max-w-md mx-auto bg-white shadow-md p-6 rounded-xl">
+
+    <!-- Nama -->
+    <input type="text" name="name" placeholder="Nama"
+           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+
+    <!-- Alamat -->
+    <input type="text" name="address" placeholder="Alamat"
+           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+
+    <!-- Kota -->
+    <input type="text" name="city" placeholder="Kota"
+           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+
+      <!-- Username -->
+  <input type="text" name="username" placeholder="Username"
+         class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+
+    <!-- PIN -->
+    <input type="text" name="pin" placeholder="PIN"
+           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+
+    <!-- Foto -->
+    <div>
+      <label class="block text-gray-700 mb-2">Upload Foto</label>
+      <input type="file" name="photo"
+             class="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4
+                    file:rounded-lg file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-blue-50 file:text-blue-600
+                    hover:file:bg-blue-100">
+    </div>
+
+    <!-- Tombol Simpan -->
+    <button type="submit"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition">
+      💾 Simpan
+    </button>
+  </form>
+
+  <div class="text-center mt-6">
+    <a href="/" class="text-blue-600 hover:text-blue-800 font-medium transition">
+      ← Go Back to Homepage
+    </a>
+  </div>
+{% endblock %}

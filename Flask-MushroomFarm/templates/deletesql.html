@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Student{% endblock %}
+
+{% block content %}
+<div class="p-6 bg-white shadow-md rounded-lg text-center">
+  <h3 class="text-2xl font-bold text-red-600 mb-6">
+    ⚠️ Delete Confirmation
+  </h3>
+
+  <p class="mb-6 text-gray-700">
+    Are you sure you want to delete <span class="font-bold">{{ student['name'] }}</span>?
+  </p>
+
+  <form action="{{ url_for('delete', id=student['id']) }}" method="POST" class="flex justify-center space-x-4">
+    <a href="{{ url_for('list_records') }}"
+       class="bg-gray-400 hover:bg-gray-500 text-white py-2 px-4 rounded-lg shadow-md transition">
+       ❌ Cancel
+    </a>
+    <button type="submit"
+            class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg shadow-md transition">
+      🗑️ Yes, Delete
+    </button>
+  </form>
+</div>
+{% endblock %}
